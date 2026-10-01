@@ -136,9 +136,9 @@
 </head>
 <body>
 
-    <div id="music-btn" onclick="toggleMusic()">🎵</div>
-    <audio id="bg-music" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+    <button id="music-btn" type="button" aria-label="Reproducir música" aria-pressed="false" title="Reproducir música">🎵</button>
+    <audio id="bg-music" autoplay loop preload="auto">
+        <source src="carnaval.mp3" type="audio/mpeg">
     </audio>
 
     <section class="hero">
@@ -170,7 +170,7 @@
                 
                 <div class="detail-icon">📅</div>
                 <div class="detail-title">Fecha & Hora</div>
-                <div class="detail-text">24 de Octubre<br>8:00 P. M.</div>
+                <div class="detail-text">24 de Octubre<br>7:00 P. M.</div>
             </div>
 
             <div class="detail-card fade-in">
@@ -346,6 +346,13 @@
             <button class="gallery-more" type="button" aria-controls="gallery-photos">Ver más fotos</button>
         </div>
         <p class="gallery-end">Y tantos momentos por compartir…</p>
+        <div class="shared-memories" aria-labelledby="shared-title" hidden>
+            <h2 id="shared-title">Recuerdos compartidos</h2>
+            <p class="gallery-intro">Las fotos que también forman parte de nuestra historia.</p>
+            <p id="shared-status" class="gallery-hint" role="status">Comparte una foto desde las dedicatorias.</p>
+            <div id="shared-photos" class="gallery-grid"></div>
+            <button id="shared-more" class="gallery-more" type="button" hidden>Ver más recuerdos</button>
+        </div>
     </section>
     <dialog id="photo-viewer" class="photo-viewer" aria-labelledby="viewer-title">
         <div class="viewer-toolbar">
@@ -373,6 +380,14 @@
                 <label>Tu Mensaje</label>
                 <textarea id="guest-message" class="form-control" rows="4" required placeholder="Escribe tus mejores deseos..."></textarea>
             </div>
+            <div class="form-group photo-upload">
+                <label for="guest-photo">¿Tienes fotos conmigo? ¡Compártelas!</label>
+                <p id="photo-help">Opcional · Selecciona hasta 10 fotos JPG, PNG o WebP, de hasta 5 MB cada una. Aparecerán en Recuerdos compartidos con tu nombre.</p>
+                <input type="file" id="guest-photo" class="form-control" multiple accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-status">
+                <p id="photo-status" role="status"></p>
+                <div id="photo-preview" aria-label="Fotos seleccionadas" hidden></div>
+                <button id="remove-photo" type="button" hidden>Quitar todas las fotos</button>
+            </div>
             <button type="submit" class="btn-submit">Enviar Mensaje</button>
         </form>
 
@@ -396,18 +411,6 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        const bgMusic = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-btn');
-        let isPlaying = false;
-        function toggleMusic() {
-            if (isPlaying) {
-                bgMusic.pause(); musicBtn.classList.remove('playing'); musicBtn.innerText = "🎵";
-            } else {
-                bgMusic.play(); musicBtn.classList.add('playing'); musicBtn.innerText = "⏸";
-            }
-            isPlaying = !isPlaying;
-        }
-
         const countDownDate = new Date(CONFIG.fechaEvento).getTime();
         const x = setInterval(function() {
             const now = new Date().getTime(); const distance = countDownDate - now;
@@ -423,6 +426,7 @@
 
 
     </script>
+    <script src="music.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
     <script src="guestbook.js"></script>
