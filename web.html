@@ -98,15 +98,6 @@
         }
         .btn-map:hover { background: var(--gold-accent); color: #fff; }
 
-        .gallery {
-            background: linear-gradient(rgba(252, 251, 248, 0.92), rgba(252, 251, 248, 0.92)), url('huanta.jpg') center/cover fixed;
-        }
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 0 10px; position: relative; z-index: 2; }
-        .gallery-item {
-            width: 100%; min-height: 200px; background-color: #EFEBE4; background-size: cover;
-            background-position: center; border: 4px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-radius: 8px;
-        }
-
         .guestbook { background-color: #fff; border-top: 1px solid rgba(212, 184, 86, 0.2); }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; font-weight: 500;}
@@ -134,7 +125,6 @@
 
         @media (min-width: 768px) {
             .details-grid { grid-template-columns: 1fr 1fr; }
-            .gallery-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
             .hero h1 { font-size: 50px; }
             .hero .script-name { font-size: 110px; }
             section { padding: 100px 20%; }
@@ -142,6 +132,7 @@
         .map-responsive { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; }
         .map-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
+    <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
 
@@ -197,23 +188,177 @@
         </div>
     </section>
 
-    <section id="galeria" class="gallery">
-        <div class="section-heading fade-in" style="margin-bottom: 22px;">
-            <div class="eyebrow" style="display:inline-block; letter-spacing: 0.2rem; text-transform: uppercase; color: var(--text-accent); font-size: 0.72rem; font-weight: 700; margin-bottom: 12px;">Recuerdos</div>
-            <h2 style="font-family: var(--font-serif); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 500; color: var(--text-main);">Momentos que cuentan</h2>
+    <section id="galeria" class="gallery" aria-labelledby="gallery-title">
+        <div class="gallery-heading">
+            <span class="gallery-eyebrow">Recuerdos de una vida</span>
+            <h2 id="gallery-title">Momentos que cuentan</h2>
+            <p class="gallery-intro">Sonrisas, viajes y pequeños instantes que hoy se convierten en recuerdos para celebrar.</p>
+            <p class="gallery-hint">recuerdos de Feli · Toca una foto para verla completa</p>
         </div>
-
-        <div class="gallery-grid fade-in">
-            <div class="gallery-item" style="background-image: url('huanta.jpg');"></div>
-            <div class="gallery-item" style="background-image: url('huanta.webp');"></div>
-            <div class="gallery-item" style="background-image: url('retama.jpg');"></div>
-            <div class="gallery-item" style="background-image: linear-gradient(135deg, rgba(214,184,103,0.08), rgba(156,98,93,0.14)), url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=700&q=80');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=700&q=80');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80');"></div>
-            <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=700&q=80');"></div>
+        <div class="gallery-grid" id="gallery-photos">
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.36.jpeg" aria-label="Ampliar foto 1: Una sonrisa para recordar">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.36.jpeg" alt="Retrato al aire libre con una bebida" width="899" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Una sonrisa para recordar</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.37%20%281%29.jpeg" aria-label="Ampliar foto 2: De celebración">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.37%20%281%29.jpeg" alt="Retrato junto a una decoración de globos" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">De celebración</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-10-01%20at%2000.00.28.jpeg" aria-label="Ampliar foto 3: Un momento para sonreír">
+                    <img src="img/WhatsApp%20Image%202026-10-01%20at%2000.00.28.jpeg" alt="Retrato sonriendo y apoyando el rostro en una mano" width="640" height="1316" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un momento para sonreír</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.41%20%283%29.jpeg" aria-label="Ampliar foto 4: Una tarde de paseo">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.41%20%283%29.jpeg" alt="Retrato en un centro comercial" width="960" height="1280" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Una tarde de paseo</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%281%29.jpeg" aria-label="Ampliar foto 5: Un momento de calma">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%281%29.jpeg" alt="Retrato sentada frente a un jardín" width="1200" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un momento de calma</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.37.jpeg" aria-label="Ampliar foto 6: Un día al aire libre">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.37.jpeg" alt="Paseo en un jardín bajo el cielo azul" width="1200" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un día al aire libre</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.39%20%281%29.jpeg" aria-label="Ampliar foto 7: Entre jardines">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.39%20%281%29.jpeg" alt="Retrato junto a un estanque rodeado de árboles" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Entre jardines</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.40.jpeg" aria-label="Ampliar foto 8: Un descanso en el camino">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.40.jpeg" alt="Retrato junto a un estanque en el bosque" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un descanso en el camino</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.38%20%282%29.jpeg" aria-label="Ampliar foto 9: Junto al lago">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.38%20%282%29.jpeg" alt="Paseo por un muelle junto al lago" width="720" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Junto al lago</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.40%20%281%29.jpeg" aria-label="Ampliar foto 10: Un paseo por el lago">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.40%20%281%29.jpeg" alt="Retrato en la cubierta de una embarcación junto al lago" width="1600" height="900" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un paseo por el lago</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%282%29.jpeg" aria-label="Ampliar foto 11: Lista para navegar">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%282%29.jpeg" alt="Retrato junto a una embarcación con bandera peruana" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Lista para navegar</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%282%29.jpeg" aria-label="Ampliar foto 12: Caminos sobre el agua">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%282%29.jpeg" alt="Paseo por un muelle de madera" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Caminos sobre el agua</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.38.jpeg" aria-label="Ampliar foto 13: Nuevos caminos">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.38.jpeg" alt="Paseo frente a una casa con jardín" width="720" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Nuevos caminos</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.39.jpeg" aria-label="Ampliar foto 14: Arte y color">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.39.jpeg" alt="Retrato frente a un mural de colores" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Arte y color</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%285%29.jpeg" aria-label="Ampliar foto 15: Recuerdos del viaje">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%285%29.jpeg" alt="Retrato en un local decorado con figuras de aves" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Recuerdos del viaje</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47.jpeg" aria-label="Ampliar foto 16: Una nueva experiencia">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47.jpeg" alt="Retrato entre plantas tropicales" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Una nueva experiencia</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.44.jpeg" aria-label="Ampliar foto 17: Rodeada de verde">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.44.jpeg" alt="Retrato junto a plantas de hojas grandes" width="899" height="1599" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Rodeada de verde</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%283%29.jpeg" aria-label="Ampliar foto 18: Entre grandes árboles">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.46%20%283%29.jpeg" alt="Retrato junto a las raíces de un árbol grande" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Entre grandes árboles</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.45%20%281%29.jpeg" aria-label="Ampliar foto 19: La alegría de descubrir">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.45%20%281%29.jpeg" alt="Retrato con los brazos abiertos frente a una cascada" width="899" height="1599" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">La alegría de descubrir</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%283%29.jpeg" aria-label="Ampliar foto 20: Al pie de la cascada">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%283%29.jpeg" alt="Retrato al pie de una cascada" width="576" height="1280" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Al pie de la cascada</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.43%20%281%29.jpeg" aria-label="Ampliar foto 21: Entre montañas">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.43%20%281%29.jpeg" alt="Paseo por un paisaje de montañas" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Entre montañas</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.43%20%282%29.jpeg" aria-label="Ampliar foto 22: Paisajes para recordar">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.43%20%282%29.jpeg" alt="Vista de un río entre montañas" width="1600" height="900" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Paisajes para recordar</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.45.jpeg" aria-label="Ampliar foto 23: Una vista especial">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.45.jpeg" alt="Retrato en un mirador entre montañas" width="720" height="1280" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Una vista especial</span></figcaption>
+                </a>
+            </figure>
+            <figure class="gallery-item">
+                <a class="gallery-link" href="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%284%29.jpeg" aria-label="Ampliar foto 24: Un destino más">
+                    <img src="img/WhatsApp%20Image%202026-09-30%20at%2021.30.47%20%284%29.jpeg" alt="Recuerdo de un paseo en un mirador" width="900" height="1600" loading="lazy" decoding="async">
+                    <figcaption><span class="photo-title">Un destino más</span></figcaption>
+                </a>
+            </figure>
         </div>
+        <div class="gallery-pagination" hidden>
+            <p class="gallery-progress" role="status" aria-live="polite"></p>
+            <button class="gallery-more" type="button" aria-controls="gallery-photos">Ver más fotos</button>
+        </div>
+        <p class="gallery-end">Y tantos momentos por compartir…</p>
     </section>
+    <dialog id="photo-viewer" class="photo-viewer" aria-labelledby="viewer-title">
+        <div class="viewer-toolbar">
+            <p id="viewer-title">Recuerdos de Feli</p>
+            <button type="button" data-close autofocus aria-label="Cerrar foto">Cerrar ×</button>
+        </div>
+        <img class="viewer-image" alt="">
+        <div class="viewer-bottom">
+            <button type="button" data-prev aria-label="Foto anterior">← Anterior</button>
+            <p class="viewer-caption" aria-live="polite"></p>
+            <button type="button" data-next aria-label="Foto siguiente">Siguiente →</button>
+        </div>
+    </dialog>
 
     <section class="guestbook fade-in">
         <h2 class="section-title" style="margin-bottom: 10px;">Dedicatorias</h2>
@@ -281,5 +426,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="supabase-config.js"></script>
     <script src="guestbook.js"></script>
+    <script src="gallery.js"></script>
 </body>
 </html>
