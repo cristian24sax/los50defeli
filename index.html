@@ -98,7 +98,26 @@
         }
         .btn-map:hover { background: var(--gold-accent); color: #fff; }
 
-        .guestbook { background-color: #fff; border-top: 1px solid rgba(212, 184, 86, 0.2); }
+        html { scroll-behavior: smooth; }
+        .hero-dedication {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 28px; padding: 15px 26px; min-height: 48px;
+            border: 1px solid var(--text-accent); border-radius: 30px;
+            background: var(--text-accent); color: #fff; text-decoration: none;
+            font: 500 13px/1.5 var(--font-sans); text-align: center;
+            box-shadow: 0 6px 18px rgba(168,111,104,.18);
+            transition: background .2s, box-shadow .2s;
+        }
+        .hero-dedication:hover { background: #8e5953; box-shadow: 0 8px 22px rgba(168,111,104,.25); }
+        .hero-dedication:focus-visible { outline: 3px solid var(--gold-accent); outline-offset: 4px; }
+        .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+        .hero-actions[hidden] { display: none; }
+        .hero-actions .hero-dedication { margin-top: 0; }
+        .hero-photos { background: transparent; color: var(--text-accent); box-shadow: none; }
+        .hero-photos:hover { background: #f3e7e1; }
+        .guestbook { background-color: #fff; border-top: 1px solid rgba(212, 184, 86, 0.2); scroll-margin-top: 20px; }
+        @media (max-height: 740px) { .hero { height: auto; min-height: 100svh; padding-top: 60px; padding-bottom: 60px; } }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hero-dedication { transition: none; } }
         .form-group { margin-bottom: 20px; text-align: left; }
         .form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; font-weight: 500;}
         .form-control {
@@ -155,6 +174,10 @@
         </div>
         <div id="countdown-message" style="display:none; font-family: var(--font-serif); font-size: 24px; color: var(--text-accent); margin-top: 30px;">
             ¡Hoy celebramos los 50 años! 🎉
+        </div>
+        <div class="hero-actions" id="hero-actions" hidden>
+            <a class="hero-dedication" href="#dedicatorias">Déjame unas palabras <span aria-hidden="true">♡</span></a>
+            <a class="hero-dedication hero-photos" href="#galeria">Mira mis recuerdos <span aria-hidden="true">↗</span></a>
         </div>
     </section>
 
@@ -367,7 +390,7 @@
         </div>
     </dialog>
 
-    <section class="guestbook fade-in">
+    <section id="dedicatorias" class="guestbook">
         <h2 class="section-title" style="margin-bottom: 10px;">Dedicatorias</h2>
         <p style="font-family: var(--font-serif); font-size: 20px; margin-bottom: 40px; font-style: italic;">Déjale un mensaje lleno de cariño</p>
         
@@ -404,7 +427,7 @@
 
     <script>
         const CONFIG = {
-            fechaEvento: "Oct 24, 2026 20:00:00",
+            fechaEvento: "2026-10-24T19:00:00-05:00",
             mapUrl: "https://www.google.com/maps?q=-12.07380639957765,-76.97107796226963&z=19"
         };
         document.getElementById('map-link').href = CONFIG.mapUrl;
@@ -415,16 +438,22 @@
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
         const countDownDate = new Date(CONFIG.fechaEvento).getTime();
-        const x = setInterval(function() {
+        function updateCountdown() {
             const now = new Date().getTime(); const distance = countDownDate - now;
-            if (distance < 0) {
-                clearInterval(x); document.getElementById("countdown").style.display = "none"; document.getElementById("countdown-message").style.display = "block";
+            document.getElementById('hero-actions').hidden = distance <= 0;
+            if (distance <= 0) {
+                document.getElementById("countdown").style.display = "none"; document.getElementById("countdown-message").style.display = "block";
             } else {
                 document.getElementById("days").innerText = String(Math.floor(distance / (1000 * 60 * 60 * 24))).padStart(2, '0');
                 document.getElementById("hours").innerText = String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
                 document.getElementById("minutes").innerText = String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
                 document.getElementById("seconds").innerText = String(Math.floor((distance % (1000 * 60)) / 1000)).padStart(2, '0');
             }
+        }
+        updateCountdown();
+        const countdownInterval = setInterval(() => {
+            updateCountdown();
+            if (Date.now() >= countDownDate) clearInterval(countdownInterval);
         }, 1000);
 
 
