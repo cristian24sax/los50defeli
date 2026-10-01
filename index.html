@@ -132,7 +132,7 @@
         .map-responsive { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-top: 20px; border-radius: 8px; }
         .map-responsive iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
-    <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="gallery.css?v=20261001-mobile-upload">
 </head>
 <body>
 
@@ -383,7 +383,10 @@
             <div class="form-group photo-upload">
                 <label for="guest-photo">¿Tienes fotos conmigo? ¡Compártelas!</label>
                 <p id="photo-help">Opcional · Selecciona hasta 10 fotos JPG, PNG o WebP, de hasta 5 MB cada una. Aparecerán en Recuerdos compartidos con tu nombre.</p>
-                <input type="file" id="guest-photo" class="form-control" multiple accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-status">
+                <div class="photo-picker">
+                    <span class="photo-picker-caption" aria-hidden="true">＋ Seleccionar fotos</span>
+                    <input type="file" id="guest-photo" class="form-control" multiple accept="image/jpeg,image/png,image/webp" aria-describedby="photo-help photo-status">
+                </div>
                 <p id="photo-status" role="status"></p>
                 <div id="photo-preview" aria-label="Fotos seleccionadas" hidden></div>
                 <button id="remove-photo" type="button" hidden>Quitar todas las fotos</button>

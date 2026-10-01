@@ -5,6 +5,7 @@
     let autoStart = true;
     let playPending = false;
     let lastScrollAttempt = -Infinity;
+    const interactionEvents = ['click', 'keydown', 'pointerdown', 'pointerup', 'touchstart', 'touchend'];
 
     function updateButton() {
         const playing = !audio.paused && !audio.ended;
@@ -17,11 +18,9 @@
 
     function stopAutoStart() {
         autoStart = false;
-        document.removeEventListener('click', startOnInteraction);
-        document.removeEventListener('keydown', startOnInteraction);
+        interactionEvents.forEach(type => document.removeEventListener(type, startOnInteraction, true));
         document.removeEventListener('scroll', startOnScroll);
         document.removeEventListener('wheel', startOnScroll);
-        document.removeEventListener('touchend', startOnInteraction);
     }
 
     async function play() {
@@ -47,7 +46,7 @@
 
     function startOnInteraction(event) {
         if (!autoStart || button.contains(event.target)) return;
-        if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
+        if (event.type === 'keydown' && !['Enter', ' ', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End'].includes(event.key)) return;
         void play();
     }
 
@@ -63,11 +62,13 @@
         if (audio.paused) void play();
         else audio.pause();
     });
-    document.addEventListener('click', startOnInteraction);
-    document.addEventListener('keydown', startOnInteraction);
+    // Try play directly during the gesture, before scrolling begins.
+    // Capture also handles interactions inside elements that stop propagation.
+    interactionEvents.forEach(type => {
+        document.addEventListener(type, startOnInteraction, { capture: true, passive: true });
+    });
     document.addEventListener('scroll', startOnScroll, { passive: true });
     document.addEventListener('wheel', startOnScroll, { passive: true });
-    document.addEventListener('touchend', startOnInteraction, { passive: true });
     updateButton();
     void play();
 })();
